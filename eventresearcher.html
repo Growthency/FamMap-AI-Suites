@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Researcher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f0f2f5;
+      }
+      .card {
+        background-color: white;
+        transition: all 0.3s ease;
+      }
+      .card-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .link-item:hover .delete-link-btn {
+        opacity: 1;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #aab2c2;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #8892a7;
+      }
+      /* Modal styles */
+      .modal-overlay {
+        transition: opacity 0.3s ease;
+      }
+      .modal-content {
+        transition: transform 0.3s ease;
+      }
+    </style>
+  </head>
+  <body class="text-gray-800 antialiased bg-white">
+    <!-- Header -->
+    <header
+      class="bg-white/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm border-b border-gray-200/50"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="index.html" class="flex items-center gap-2">
+            <img src="fam.png" alt="" class="famlogo" />
+          </a>
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="eventresearcher.html"
+              class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300"
+              >FamEvent</a
+            >
+            <a
+              href="Short-Description.html"
+              class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300"
+              >FamiShort</a
+            >
+            <a
+              href="universal.html"
+              class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300"
+              >FamUniversal</a
+            >
+            <a
+              href="Ideagenerator.html"
+              class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300"
+              >FamIdea</a
+            >
+          </div>
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              class="text-gray-800 focus:outline-none"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+          <nav class="flex flex-col space-y-2">
+            <a
+              href="eventresearcher.html"
+              class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300"
+              >FamEvent</a
+            >
+            <a
+              href="Short-Description.html"
+              class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300"
+              >FamiShort</a
+            >
+            <a
+              href="universal.html"
+              class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300"
+              >FamUniversal</a
+            >
+            <a
+              href="Ideagenerator.html"
+              class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300"
+              >FamIdea</a
+            >
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div
+      class="container mx-auto p-4 sm:p-6 md:p-8 max-w-screen-2xl universalheigh"
+    >
+      <!-- Header -->
+      <header class="text-center mb-10">
+        <h1
+          class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight flex items-center justify-center gap-3"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-10 w-10 text-indigo-600"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Event Researcher
+        </h1>
+        <p class="text-gray-600 mt-3 text-lg">
+          Din personliga hubb för event-research i Stockholms län.
+        </p>
+      </header>
+
+      <!-- Controls & IMPORTANT Notice -->
+      <div class="bg-white rounded-2xl shadow-md p-4 mb-8 sticky top-4 z-20">
+        <div class="flex flex-col sm:flex-row gap-4 items-center">
+          <div class="relative flex-grow w-full">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <svg
+                class="h-5 w-5 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Sök städer..."
+              class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition duration-150"
+            />
+          </div>
+          <button
+            id="add-city-btn"
+            class="w-full sm:w-auto flex-shrink-0 bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-transform transform hover:scale-105 shadow-md flex items-center justify-center gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Lägg till Stad</span>
+          </button>
+        </div>
+        <div
+          class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-3 rounded-md mt-4 text-sm"
+        >
+          <p>
+            <span class="font-bold">VIKTIGT:</span> För att "Öppna alla"-knappen
+            ska fungera korrekt, kan du behöva
+            <span class="font-semibold">tillåta pop-up-fönster</span> från denna
+            sida i din webbläsare. Detta behövs oftast bara göras en gång.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cities Grid -->
+      <div
+        id="cities-container"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      >
+        <!-- City cards will be dynamically inserted here -->
+      </div>
+    </div>
+
+    <!-- Modals -->
+    <div
+      id="link-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden modal-overlay opacity-0"
+    >
+      <div
+        class="card-header rounded-2xl shadow-xl p-1 w-full max-w-md modal-content transform scale-95"
+      >
+        <div class="bg-white rounded-xl">
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-bold text-gray-900">
+                Lägg till Länk för
+                <span id="modal-city-name" class="text-indigo-600"></span>
+              </h3>
+              <button
+                id="modal-link-close-btn"
+                class="text-gray-400 hover:text-gray-600 text-3xl"
+              >
+                &times;
+              </button>
+            </div>
+            <form id="add-link-form">
+              <input type="hidden" id="city-key-input" />
+              <div class="space-y-4">
+                <div>
+                  <label
+                    for="link-title"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Länk-namn</label
+                  >
+                  <input
+                    type="text"
+                    id="link-title"
+                    placeholder="Ex: Visit Stockholm Events"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="link-url"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >URL</label
+                  >
+                  <input
+                    type="url"
+                    id="link-url"
+                    placeholder="https://..."
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition"
+                  />
+                </div>
+              </div>
+              <div class="flex justify-end gap-4 mt-6">
+                <button
+                  type="button"
+                  id="modal-link-cancel-btn"
+                  class="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-semibold transition"
+                >
+                  Avbryt
+                </button>
+                <button
+                  type="submit"
+                  class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-semibold transition flex items-center gap-2"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  Lägg till
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="city-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden modal-overlay opacity-0"
+    >
+      <div
+        class="card-header rounded-2xl shadow-xl p-1 w-full max-w-md modal-content transform scale-95"
+      >
+        <div class="bg-white rounded-xl p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-gray-900">Lägg till ny stad</h3>
+            <button
+              id="modal-city-close-btn"
+              class="text-gray-400 hover:text-gray-600 text-3xl"
+            >
+              &times;
+            </button>
+          </div>
+          <form id="add-city-form">
+            <div>
+              <label
+                for="new-city-name"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Stadens namn</label
+              >
+              <input
+                type="text"
+                id="new-city-name"
+                placeholder="Ex: Göteborg"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition"
+              />
+            </div>
+            <div class="flex justify-end gap-4 mt-6">
+              <button
+                type="button"
+                id="modal-city-cancel-btn"
+                class="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-semibold transition"
+              >
+                Avbryt
+              </button>
+              <button
+                type="submit"
+                class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-semibold transition"
+              >
+                Lägg till
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="confirmation-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden modal-overlay opacity-0"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-xl p-8 max-w-sm w-full modal-content transform scale-95"
+      >
+        <h3 id="modal-title" class="text-xl font-bold text-gray-900 mb-4">
+          Är du säker?
+        </h3>
+        <p id="modal-text" class="text-gray-600 mb-6">
+          Denna åtgärd kan inte ångras.
+        </p>
+        <div class="flex justify-end gap-4">
+          <button
+            id="modal-cancel-btn"
+            class="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-semibold transition"
+          >
+            Avbryt
+          </button>
+          <button
+            id="modal-confirm-btn"
+            class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold transition"
+          >
+            Ta bort
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="text-center py-10 border-t bg-white">
+      <div class="container mx-auto">
+        <p class="text-gray-500">
+          &copy; 2025 FamMap. Alla rättigheter förbehållna.
+        </p>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const addLinkForm = document.getElementById("add-link-form");
+        const addCityForm = document.getElementById("add-city-form");
+        const addCityBtn = document.getElementById("add-city-btn");
+        const searchInput = document.getElementById("search-input");
+        const citiesContainer = document.getElementById("cities-container");
+        const linkModal = document.getElementById("link-modal");
+        const cityModal = document.getElementById("city-modal");
+        const confirmationModal = document.getElementById("confirmation-modal");
+        const modalCityName = document.getElementById("modal-city-name");
+        const cityKeyInput = document.getElementById("city-key-input");
+        const linkTitleInput = document.getElementById("link-title");
+        const linkUrlInput = document.getElementById("link-url");
+        const newCityNameInput = document.getElementById("new-city-name");
+
+        document
+          .getElementById("modal-link-close-btn")
+          .addEventListener("click", () => hideModal(linkModal));
+        document
+          .getElementById("modal-link-cancel-btn")
+          .addEventListener("click", () => hideModal(linkModal));
+        document
+          .getElementById("modal-city-close-btn")
+          .addEventListener("click", () => hideModal(cityModal));
+        document
+          .getElementById("modal-city-cancel-btn")
+          .addEventListener("click", () => hideModal(cityModal));
+        document
+          .getElementById("modal-cancel-btn")
+          .addEventListener("click", () => hideModal(confirmationModal));
+
+        const confirmModalTitle = document.getElementById("modal-title");
+        const confirmModalText = document.getElementById("modal-text");
+        const modalConfirmBtn = document.getElementById("modal-confirm-btn");
+
+        let data = {};
+        let confirmAction = null;
+
+        const initialData = {
+          Sigtuna: [
+            {
+              title: "Sigtuna Kommun Events",
+              url: "https://www.sigtuna.se/evenemang.html",
+            },
+            {
+              title: "Destination Sigtuna",
+              url: "https://www.destinationsigtuna.se/sv/evenemangskalender/",
+            },
+            {
+              title: "Sigtuna Museum",
+              url: "https://www.sigtuna.se/kultur-och-fritid/kultur/sigtuna-museum--art/evenemang.html",
+            },
+            {
+              title: "Sigtuna Bibliotek",
+              url: "https://bibliotek.sigtuna.se/web/arena/kalender",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/www.sigtuna.se/events/?id=100064556055761&sk=events",
+            },
+          ],
+          Österåker: [
+            {
+              title: "Österåkers Kommun",
+              url: "https://www.osteraker.se/arkivevenemangkrisochinfo/evenemang.4.592cfecd176fc0db87818e.html",
+            },
+            {
+              title: "Visit Roslagen",
+              url: "https://www.visitroslagen.se/osteraker/evenemang",
+            },
+            {
+              title: "Österåkers Bibliotek",
+              url: "https://bibliotek.osteraker.se/evenemang#/",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/osterakerskommun/events/?id=100042529045059&sk=events",
+            },
+          ],
+          "Upplands Väsby": [
+            {
+              title: "Upplands Väsby Kommun",
+              url: "https://www.upplandsvasby.se/arkiv/evenemang/evenemangskalender",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/upplandsvasby/events/?id=100064300285489&sk=events",
+            },
+            {
+              title: "Messingen Events",
+              url: "https://www.facebook.com/Messingen/events/?id=100064876622652&sk=events&locale=sv_SE",
+            },
+            {
+              title: "Väsby Bibliotek",
+              url: "https://bibliotek.upplandsvasby.se/kalender",
+            },
+          ],
+          Täby: [
+            { title: "Täby Kommun", url: "https://www.taby.se/evenemang/" },
+            {
+              title: "Täby Bibliotek",
+              url: "https://bibliotek.taby.se/evenemang#/",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/kommuntaby/events",
+            },
+          ],
+          Sollentuna: [
+            {
+              title: "Sollentuna Kommun",
+              url: "https://www.sollentuna.se/aktuell-kalender/",
+            },
+            {
+              title: "Sollentuna Bibliotek",
+              url: "https://www.bibliotekenisollentuna.se/evenemang#/",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/sollentunakommun/events",
+            },
+          ],
+          Vallentuna: [
+            {
+              title: "Upplev Vallentuna",
+              url: "https://www.upplevvallentuna.se/sv/evenemang/",
+            },
+            {
+              title: "Vallentuna Kommun",
+              url: "https://www.vallentuna.se/evenemang-och-upplevelser/evenemangskalender/",
+            },
+            {
+              title: "Vallentuna Bibliotek",
+              url: "https://bibliotek.vallentuna.se/aktiviteter#/",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/vallentunakommun/events",
+            },
+          ],
+          Solna: [
+            {
+              title: "Solna Stad",
+              url: "https://www.solna.se/uppleva--gora/evenemang",
+            },
+            {
+              title: "Solna Bibliotek",
+              url: "https://bibliotek.solna.se/evenemang#/",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/cityofsolna/events",
+            },
+          ],
+          Sundbyberg: [
+            {
+              title: "Sundbybergs Stad",
+              url: "https://www.sundbyberg.se/uppleva-och-gora/evenemang",
+            },
+            {
+              title: "Sundbybergs Bibliotek",
+              url: "https://bibliotek.sundbyberg.se/evenemang#/",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/sundbyberg.se/events",
+            },
+          ],
+          Huddinge: [
+            {
+              title: "Huddinge Kommun",
+              url: "https://www.huddinge.se/pa-gang/pages/1-46",
+            },
+            {
+              title: "Huddinge Bibliotek",
+              url: "https://bibliotek.huddinge.se/evenemang#/",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/Huddingekommun/events",
+            },
+          ],
+          Lidingö: [
+            {
+              title: "Lidingö Stad",
+              url: "https://lidingo.se/toppmeny/kulturfritid/evenemangskalender.4.56084d171880bf3fa61629.html",
+            },
+            {
+              title: "Lidingö Bibliotek",
+              url: "https://www.lidingo.se/biblioteket/stadsbiblioteket/toppmenyforbibblan/pagang/allaaktiviteter.4.54b37c6416660b2cd8a2dee.html",
+            },
+            {
+              title: "Visit Lidingö",
+              url: "https://www.visitlidingo.se/evenemang/",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/lidingostad/events/",
+            },
+          ],
+          Stockholm: [
+            {
+              title: "Ticketmaster",
+              url: "https://www.ticketmaster.se/city/stockholm/50001",
+            },
+            {
+              title: "Stockholms Stadsbibliotek",
+              url: "https://biblioteket.stockholm.se/evenemang",
+            },
+            {
+              title: "Tickster",
+              url: "https://www.tickster.com/se/sv/events/in/stockholm",
+            },
+            {
+              title: "Barn i Stan",
+              url: "https://www.barnistan.se/tips/evenemang/",
+            },
+            {
+              title: "Kulturhuset Stadsteatern",
+              url: "https://kulturhusetstadsteatern.se/barn-ung",
+            },
+          ],
+          Danderyd: [
+            {
+              title: "Danderyds Kommun",
+              url: "https://www.danderyd.se/evenemang/",
+            },
+            {
+              title: "Danderyds Bibliotek",
+              url: "https://bibliotek.danderyd.se/evenemang#/",
+            },
+            {
+              title: "Facebook Events",
+              url: "https://www.facebook.com/danderydskommun/events",
+            },
+          ],
+          Botkyrka: [],
+          Ekerö: [],
+          Haninge: [],
+          Järfälla: [],
+          Nacka: [],
+          Norrtälje: [],
+          Nykvarn: [],
+          Nynäshamn: [],
+          Salem: [],
+          Södertälje: [],
+          Tyresö: [],
+          "Upplands-Bro": [],
+          Uppsala: [],
+          Vaxholm: [],
+          Värmdö: [],
+        };
+
+        function loadData() {
+          const savedData = localStorage.getItem("eventResearcherDataV4");
+          if (savedData) {
+            data = JSON.parse(savedData);
+          } else {
+            data = initialData;
+          }
+        }
+
+        function saveData() {
+          localStorage.setItem("eventResearcherDataV4", JSON.stringify(data));
+        }
+
+        function renderCities(filter = "") {
+          citiesContainer.innerHTML = "";
+          const sortedCities = Object.keys(data).sort();
+          const filteredCities = sortedCities.filter((city) =>
+            city.toLowerCase().includes(filter.toLowerCase())
+          );
+
+          if (filteredCities.length === 0) {
+            citiesContainer.innerHTML = `<p class="text-center text-gray-500 col-span-full">Inga städer matchade din sökning.</p>`;
+            return;
+          }
+
+          filteredCities.forEach((city) => {
+            if (!city) return;
+
+            const links = data[city] || [];
+            const card = document.createElement("div");
+            card.className =
+              "card rounded-2xl shadow-lg flex flex-col city-card";
+
+            const linksHtml = links
+              .map(
+                (link, index) => `
+                    <li class="group link-item p-2 -mx-2 rounded-md transition-colors duration-200 hover:bg-gray-50">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-grow min-w-0">
+                                <h4 class="font-semibold text-gray-800 truncate">${link.title}</h4>
+                                <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline truncate block">${link.url}</a>
+                            </div>
+                            <button data-city="${city}" data-index="${index}" class="delete-link-btn text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-2 mt-1 p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                            </button>
+                        </div>
+                    </li>
+                `
+              )
+              .join("");
+
+            card.innerHTML = `
+                    <div class="card-header p-4 rounded-t-2xl">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-white">${city}</h3>
+                             <button data-city="${city}" class="delete-city-btn text-white/70 hover:text-white transition p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                            </button>
+                        </div>
+                        <p class="text-sm text-white/80">Sverige</p>
+                    </div>
+                    <div class="p-4 flex-grow flex flex-col">
+                        <div class="flex justify-between items-center mb-3 border-b pb-2">
+                             <span class="text-sm text-gray-600">${
+                               links.length
+                             } Länkar</span>
+                             <button data-city="${city}" class="open-all-btn text-sm text-green-600 font-semibold hover:text-green-800 flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" /><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" /></svg>
+                                Öppna alla
+                            </button>
+                        </div>
+                        <div class="flex-grow overflow-y-auto" style="max-height: 220px;">
+                            <ul class="space-y-1">${
+                              linksHtml ||
+                              '<p class="text-sm text-gray-400 text-center py-4">Inga länkar tillagda.</p>'
+                            }</ul>
+                        </div>
+                        <div class="mt-4">
+                            <button data-city="${city}" class="add-link-to-city-btn w-full border-2 border-dashed border-gray-300 text-gray-500 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 hover:border-gray-400 transition">
+                                + Lägg till länk
+                            </button>
+                        </div>
+                    </div>
+                `;
+            citiesContainer.appendChild(card);
+          });
+
+          attachEventListeners();
+        }
+
+        function attachEventListeners() {
+          document.querySelectorAll(".open-all-btn").forEach((button) => {
+            button.addEventListener("click", (e) => {
+              const city = e.currentTarget.dataset.city;
+              const linksToOpen = data[city] || [];
+              if (linksToOpen.length === 0) return;
+
+              for (const link of linksToOpen) {
+                window.open(link.url, "_blank");
+              }
+            });
+          });
+
+          document.querySelectorAll(".delete-link-btn").forEach((button) => {
+            button.addEventListener("click", (e) => {
+              const city = e.currentTarget.dataset.city;
+              const index = parseInt(e.currentTarget.dataset.index, 10);
+              showConfirmationModal(
+                "Ta bort länk?",
+                "Är du säker på att du vill ta bort denna länk?",
+                () => {
+                  data[city].splice(index, 1);
+                  saveData();
+                  renderCities(searchInput.value);
+                }
+              );
+            });
+          });
+
+          document
+            .querySelectorAll(".add-link-to-city-btn")
+            .forEach((button) => {
+              button.addEventListener("click", (e) => {
+                const city = e.currentTarget.dataset.city;
+                showLinkModal(city);
+              });
+            });
+
+          document.querySelectorAll(".delete-city-btn").forEach((button) => {
+            button.addEventListener("click", (e) => {
+              const city = e.currentTarget.dataset.city;
+              showConfirmationModal(
+                `Ta bort "${city}"?`,
+                `Är du säker på att du vill ta bort hela staden och alla dess länkar?`,
+                () => {
+                  delete data[city];
+                  saveData();
+                  renderCities(searchInput.value);
+                }
+              );
+            });
+          });
+        }
+
+        function showModal(modalElement) {
+          modalElement.classList.remove("hidden");
+          setTimeout(() => {
+            modalElement.classList.remove("opacity-0");
+            const content = modalElement.querySelector(
+              ".modal-content, .card-header > div"
+            );
+            if (content) content.classList.remove("scale-95");
+          }, 10);
+        }
+
+        function hideModal(modalElement) {
+          modalElement.classList.add("opacity-0");
+          const content = modalElement.querySelector(
+            ".modal-content, .card-header > div"
+          );
+          if (content) content.classList.add("scale-95");
+          setTimeout(() => {
+            modalElement.classList.add("hidden");
+            confirmAction = null;
+          }, 300);
+        }
+
+        function showConfirmationModal(title, text, onConfirm) {
+          confirmModalTitle.textContent = title;
+          confirmModalText.textContent = text;
+          confirmAction = onConfirm;
+          showModal(confirmationModal);
+        }
+
+        function showLinkModal(city) {
+          addLinkForm.reset();
+          modalCityName.textContent = city;
+          cityKeyInput.value = city;
+          showModal(linkModal);
+        }
+
+        addLinkForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const city = cityKeyInput.value;
+          const title = linkTitleInput.value.trim();
+          const url = linkUrlInput.value.trim();
+
+          if (!city || !title || !url) return;
+
+          if (!data[city]) {
+            data[city] = [];
+          }
+          data[city].push({ title, url });
+
+          saveData();
+          renderCities(searchInput.value);
+          hideModal(linkModal);
+        });
+
+        addCityBtn.addEventListener("click", () => {
+          addCityForm.reset();
+          showModal(cityModal);
+        });
+
+        addCityForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          let newCity = newCityNameInput.value.trim();
+          if (!newCity) return;
+          newCity =
+            newCity.charAt(0).toUpperCase() + newCity.slice(1).toLowerCase();
+
+          if (typeof data[newCity] === "undefined") {
+            data[newCity] = [];
+            saveData();
+            renderCities(searchInput.value);
+          }
+          hideModal(cityModal);
+        });
+
+        searchInput.addEventListener("keyup", () => {
+          renderCities(searchInput.value);
+        });
+
+        modalConfirmBtn.addEventListener("click", () => {
+          if (confirmAction) {
+            confirmAction();
+          }
+          hideModal(confirmationModal);
+        });
+
+        // Initial Load
+        loadData();
+        renderCities();
+      });
+    </script>
+  </body>
+</html>

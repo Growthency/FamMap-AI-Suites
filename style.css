@@ -1,0 +1,67 @@
+img.famlogo {
+  width: 5rem;
+}
+a.text-gray-600.hover\:text-indigo-600.font-medium.transition-colors.duration-300 {
+  font-size: 1.5rem;
+  font-family: "Inter";
+  font-weight: 600;
+}
+footer.text-center.py-10.border-t.bg-white {
+  font-size: 1.5rem;
+}
+header.text-center.mb-10 {
+  padding-top: 5rem;
+}
+button#generate-btn {
+  padding: 1.5rem 1rem;
+}
+.container.mx-auto.px-6.py-24.sm\:py-32.text-center.max-w-4xl.animate-on-scroll.is-visible {
+  padding: 15rem 2rem;
+}
+h1.text-4xl.sm\:text-6xl.font-extrabold.text-gray-900.tracking-tighter.leading-tight {
+  font-size: 4.3rem;
+}
+.container.mx-auto.p-4.sm\:p-6.md\:p-8.max-w-5xl.min-h-screen.universalheigh {
+  min-height: 83vh;
+}
+.container.mx-auto.p-4.sm\:p-6.md\:p-8.max-w-4xl.universalheigh {
+  min-height: 83vh;
+}
+.container {
+  max-width: 1800px !important;
+}
+.container.mx-auto.p-4.sm\:p-6.md\:p-8.max-w-screen-2xl.universalheigh {
+  min-height: 83vh;
+}
+li.flex.items-center.text-gray-800.bg-white\/60.p-4.rounded-xl.border.border-white.shadow-sm.result-item.hover\:shadow-md.transition-shadow.duration-300 {
+  font-size: 1.6rem;
+}
+div#generated-description {
+  font-size: 1.5rem;
+}
+.text-lg {
+  font-size: 2.125rem;
+  line-height: 1.75rem;
+}
+#generated-description h3 {
+  font-size: 2rem;
+  line-height: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+button#copy-button {
+  font-size: 2rem;
+}
+.text-sm {
+  font-size: 1.3rem !important;
+  line-height: 2rem !important;
+}
+div#generated-content {
+  font-size: 1.1rem !important;
+}
+main.flex-grow {
+  background: white;
+}
+body.text-gray-800.antialiased.bg-white {
+  background: white;
+}

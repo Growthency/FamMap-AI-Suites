@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Universal Content Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+        background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+      }
+      .loader {
+        border: 4px solid #e5e7eb;
+        border-top: 4px solid #4f46e5;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      #generated-content h1 {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #111827;
+      }
+      #generated-content h2 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #1f2937;
+        border-bottom: 2px solid #d1d5db;
+        padding-bottom: 0.5rem;
+      }
+      #generated-content h3 {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #374151;
+      }
+      #generated-content p {
+        margin-bottom: 1rem;
+        line-height: 1.75;
+        color: #4b5563;
+      }
+      #generated-content ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+        color: #4b5563;
+      }
+      #generated-content li {
+        margin-bottom: 0.5rem;
+      }
+      #generated-content strong {
+        color: #111827;
+      }
+      #generated-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.5rem;
+      }
+      #generated-content th,
+      #generated-content td {
+        border: 1px solid #d1d5db;
+        padding: 0.75rem;
+        text-align: left;
+      }
+      #generated-content th {
+        background-color: #f3f4f6;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-gray-100 text-gray-800 antialiased flex flex-col min-h-screen"
+  >
+    <!-- Header -->
+    <header
+      class="bg-white/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm border-b border-gray-200/50"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="index.html" class="flex items-center gap-2">
+            <img src="fam.png" alt="FamMap Logo" class="famlogo" />
+          </a>
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="eventresearcher.html"
+              class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300"
+              >FamEvent</a
+            >
+            <a
+              href="Short-Description.html"
+              class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300"
+              >FamiShort</a
+            >
+            <a
+              href="universal.html"
+              class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300"
+              >FamUniversal</a
+            >
+            <a
+              href="Ideagenerator.html"
+              class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300"
+              >FamIdea</a
+            >
+          </div>
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              class="text-gray-800 focus:outline-none"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+          <nav class="flex flex-col space-y-2">
+            <a
+              href="eventresearcher.html"
+              class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300"
+              >FamEvent</a
+            >
+            <a
+              href="Short-Description.html"
+              class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300"
+              >FamiShort</a
+            >
+            <a
+              href="universal.html"
+              class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300"
+              >FamUniversal</a
+            >
+            <a
+              href="Ideagenerator.html"
+              class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300"
+              >FamIdea</a
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-5xl">
+        <header class="text-center mb-10">
+          <h1
+            class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight flex items-center justify-center gap-3"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-10 w-10 text-indigo-600"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Universal Content Generator
+          </h1>
+          <p class="text-gray-600 mt-3 text-lg">
+            Klistra in en titel och skapa en komplett, resursstark artikel för
+            familjer!
+          </p>
+        </header>
+
+        <div
+          class="bg-white/70 backdrop-blur-xl rounded-2xl shadow-lg p-6 sm:p-8 mb-8 sticky top-24 z-10 border border-white"
+        >
+          <form id="content-form">
+            <div class="flex flex-col sm:flex-row gap-4 items-start">
+              <textarea
+                id="title-input"
+                name="title"
+                placeholder="Klistra in din artikelidé här..."
+                required
+                rows="2"
+                class="flex-grow w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 shadow-sm text-lg bg-white/50 resize-none"
+              ></textarea>
+              <button
+                type="submit"
+                id="generate-btn"
+                class="w-full sm:w-auto flex-shrink-0 inline-flex items-center justify-center bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-transform transform hover:scale-105 disabled:bg-gray-400 disabled:scale-100 shadow-lg text-lg"
+              >
+                <span>Skapa Artikel</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div id="output-section" class="hidden">
+          <div
+            id="loader"
+            class="hidden flex flex-col justify-center items-center my-10 p-6 bg-white/70 backdrop-blur-xl border border-white rounded-2xl shadow-md"
+          >
+            <div class="loader"></div>
+            <p id="loader-text" class="text-gray-600 text-lg mt-4 text-center">
+              Skriver en fantastisk artikel åt dig... ett ögonblick...
+            </p>
+          </div>
+          <div
+            id="error-message"
+            class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg shadow-md"
+            role="alert"
+          >
+            <p class="font-bold">Ett fel uppstod</p>
+            <p>
+              Kunde inte generera artikeln efter flera försök. Vänligen försök
+              igen.
+            </p>
+          </div>
+          <div
+            id="result-card"
+            class="hidden bg-white/90 backdrop-blur-xl border border-white rounded-2xl shadow-2xl p-6 sm:p-8 md:p-10"
+          >
+            <div
+              class="flex justify-between items-center mb-6 border-b border-gray-200 pb-4 flex-wrap gap-4"
+            >
+              <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">
+                Din Genererade Artikel
+              </h2>
+              <button
+                id="copy-button"
+                class="bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-transform transform hover:scale-105 shadow-md flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z"
+                  />
+                  <path
+                    d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z"
+                  />
+                </svg>
+                <span>Kopiera</span>
+              </button>
+            </div>
+            <div
+              id="generated-content"
+              class="prose max-w-none text-gray-800 bg-white p-6 sm:p-8 rounded-lg border border-gray-200"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-10 border-t bg-white">
+      <div class="container mx-auto">
+        <p class="text-gray-500">
+          &copy; 2025 FamMap. Alla rättigheter förbehållna.
+        </p>
+      </div>
+    </footer>
+    <script>
+      const contentForm = document.getElementById("content-form");
+      const generateBtn = document.getElementById("generate-btn");
+      const titleInput = document.getElementById("title-input");
+      const outputSection = document.getElementById("output-section");
+      const loader = document.getElementById("loader");
+      const loaderText = document.getElementById("loader-text");
+      const errorMessage = document.getElementById("error-message");
+      const resultCard = document.getElementById("result-card");
+      const generatedContentDiv = document.getElementById("generated-content");
+      const copyButton = document.getElementById("copy-button");
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      // --- API CONFIGURATION ---
+      // This is the corrected part. The API keys are back.
+      const apiKeys = [
+        "AIzaSyAFNA92_GhCkc8aOI-UAbteO50fW-ep55g",
+        "AIzaSyAN_jn4dzxXNLbyAbJ2H9fyoqDkSpEei6o",
+        "AIzaSyCc53TwSEIWQzUjATy-5lpXIGyZSM04tpI",
+        "AIzaSyCfuY7h20oMxB2strUFKSoG_1-DlOsJcIs",
+        "AIzaSyBYBDZpJbRGDuysRKSWB4IeH6rA5niwC7s",
+        "AIzaSyCZevetvWqA7yYjUp61TN05cTAxzLiL2zo",
+        "AIzaSyAs7ueR3y3UpnuXn6ocpUPJmrRNT8tn9oU",
+        "AIzaSyDCJ0MEFMscXFhgDIY3jeLLkx43GqcqPU4",
+        "AIzaSyANmA-mRkSowIQsPIm78HEw63Jmlj5BmJo",
+        "AIzaSyCQAuPh1CFafvIwus76_ZpoZsYDNP3zCyc",
+      ];
+      const apiUrlBase = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=`;
+
+      // --- EVENT LISTENERS ---
+      contentForm.addEventListener("submit", handleFormSubmit);
+      copyButton.addEventListener("click", copyRichText);
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+      titleInput.addEventListener("input", () => {
+        titleInput.style.height = "auto";
+        titleInput.style.height = titleInput.scrollHeight + "px";
+      });
+
+      // --- MAIN FUNCTIONS ---
+      async function handleFormSubmit(event) {
+        event.preventDefault();
+        const title = titleInput.value.trim();
+        if (!title) return;
+
+        setLoadingState(true);
+        const updateStatus = (message) => {
+          loaderText.textContent = message;
+        };
+
+        const systemPrompt = `You are an expert content writer for "Fam Map," a popular Swedish app for families, kids, and parents. Your persona is that of a helpful, creative, and knowledgeable parent who loves to share great ideas. Your task is to take a given article title and expand it into a complete, well-structured, and engaging article of 500-1000 words. The final output MUST be a single block of well-formatted HTML code, ready to be displayed on a webpage. Do not include \`<html>\`, \`<head>\`, or \`<body>\` tags. The output should only be the content itself, starting with an \`<h1>\` tag for the main title. **CRITICAL CONTENT & FORMATTING RULES:** 1. **Language & Tone:** Must be in perfect, modern Swedish. The tone should be warm, encouraging, and directly address the parent reading it (using "du" and "ni"). 2. **Structure (MUST BE FOLLOWED):** * **Main Title:** Start with an \`<h1>\` tag. * **Introduction:** An engaging \`<p>\`. * **Headings:** At least 3-4 descriptive subheadings (\`<h2>\`). * **Bullet Points:** At least one \`<ul>\` with \`<li>\` tags. * **Table (If Relevant):** A simple \`<table>\` if the topic allows. * **FAQ Section:** \`<h2>Vanliga Frågor (FAQ)</h2>\` with 2-3 questions (\`<h3>\`) and answers (\`<p>\`). * **Conclusion:** \`<h2>Avslutning</h2>\` with a final paragraph. 3. **Content Quality:** Must be resourceful, practical, and genuinely helpful. 4. **HTML Only:** The entire response must be a single block of valid HTML code.`;
+        const userPrompt = `Article Title: "${title}"`;
+
+        try {
+          const htmlContent = await callGeminiAPIWithRetries(
+            systemPrompt,
+            userPrompt,
+            updateStatus
+          );
+          displayResults(htmlContent);
+        } catch (error) {
+          console.error("All API keys failed:", error);
+          displayError();
+        } finally {
+          setLoadingState(false);
+        }
+      }
+
+      async function callGeminiAPIWithRetries(
+        systemPrompt,
+        userPrompt,
+        updateStatusCallback,
+        keyIndex = 0
+      ) {
+        if (keyIndex >= apiKeys.length) {
+          throw new Error("All API keys failed.");
+        }
+        const apiKey = apiKeys[keyIndex];
+        const apiUrl = apiUrlBase + apiKey;
+        const attempt = keyIndex + 1;
+        if (updateStatusCallback)
+          updateStatusCallback(
+            `Skriver artikel... (Försök ${attempt}/${apiKeys.length})`
+          );
+        const payload = {
+          contents: [{ parts: [{ text: userPrompt }] }],
+          systemInstruction: { parts: [{ text: systemPrompt }] },
+          generationConfig: { temperature: 0.7, maxOutputTokens: 8192 },
+        };
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          if (!response.ok)
+            throw new Error(`API call failed with status: ${response.status}`);
+          const result = await response.json();
+          if (
+            result.candidates &&
+            result.candidates[0].content &&
+            result.candidates[0].content.parts[0].text
+          ) {
+            const text = result.candidates[0].content.parts[0].text;
+            if (text.trim().startsWith("<h1")) {
+              return text;
+            }
+            throw new Error("API did not return valid HTML content.");
+          }
+          throw new Error("API returned invalid or empty data structure.");
+        } catch (error) {
+          console.warn(`Attempt ${attempt} failed:`, error.message);
+          await new Promise((resolve) => setTimeout(resolve, 1500));
+          return await callGeminiAPIWithRetries(
+            systemPrompt,
+            userPrompt,
+            updateStatusCallback,
+            keyIndex + 1
+          );
+        }
+      }
+
+      function displayResults(htmlContent) {
+        generatedContentDiv.innerHTML = htmlContent;
+        resultCard.classList.remove("hidden");
+        resultCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // --- NEW, ROBUST COPY FUNCTION ---
+      function copyRichText() {
+        const content = generatedContentDiv;
+        const copyButtonSpan = copyButton.querySelector("span");
+
+        const listener = (e) => {
+          e.preventDefault();
+          e.clipboardData.setData("text/html", content.innerHTML);
+          e.clipboardData.setData("text/plain", content.innerText);
+        };
+
+        document.addEventListener("copy", listener);
+        document.execCommand("copy");
+        document.removeEventListener("copy", listener);
+
+        copyButtonSpan.textContent = "Kopierad!";
+        setTimeout(() => {
+          copyButtonSpan.textContent = "Kopiera";
+        }, 2000);
+      }
+
+      function displayError() {
+        errorMessage.classList.remove("hidden");
+        errorMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      function setLoadingState(isLoading) {
+        outputSection.classList.remove("hidden");
+        if (isLoading) {
+          loaderText.textContent =
+            "Skriver en fantastisk artikel åt dig... ett ögonblick...";
+          loader.classList.remove("hidden");
+          resultCard.classList.add("hidden");
+          errorMessage.classList.add("hidden");
+          generateBtn.disabled = true;
+          generateBtn.querySelector("span").textContent = "Skapar...";
+        } else {
+          loader.classList.add("hidden");
+          generateBtn.disabled = false;
+          generateBtn.querySelector("span").textContent = "Skapa Artikel";
+        }
+      }
+    </script>
+  </body>
+</html>

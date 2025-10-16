@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="sv" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FamMap AI Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm border-b border-gray-200/50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="fam.png" alt="" class="famlogo">
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="eventresearcher.html" class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300">FamEvent</a>
+                    <a href="Short-Description.html" class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300">FamiShort</a>
+                    <a href="universal.html" class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300">FamUniversal</a>
+                    <a href="Ideagenerator.html" class="text-gray-600 hover:text-indigo-600 font-medium transition-colors duration-300">FamIdea</a>
+                    
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4">
+                <nav class="flex flex-col space-y-2">
+                    <a href="eventresearcher.html" class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300">FamEvent</a>
+                    <a href="Short-Description.html" class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300">FamiShort</a>
+                    <a href="universal.html" class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300">FamUniversal</a>
+                    <a href="Ideagenerator.html" class="text-gray-600 hover:bg-indigo-50 rounded-lg p-2 font-medium transition-colors duration-300">FamIdea</a>
+                >
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-white">
+            <div class="container mx-auto px-6 py-24 sm:py-32 text-center max-w-4xl animate-on-scroll">
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 tracking-tighter leading-tight">
+                    Välkommen till <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600">FamMap AI Suite</span>
+                </h1>
+                <p class="mt-6 text-lg sm:text-xl text-gray-600">
+                    Dina intelligenta verktyg för att skapa, upptäcka och inspirera. Välj ett verktyg nedan för att komma igång.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section class="bg-slate-50/70 py-20 sm:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Våra AI-verktyg</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Utforska vår svit av AI-drivna verktyg designade för att effektivisera din vardag.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Tool Cards -->
+                    <a href="eventresearcher.html" class="animate-on-scroll tool-card group block rounded-2xl shadow-lg p-8 text-white bg-gradient-to-br from-purple-500 to-indigo-600 transform hover:-translate-y-2 transition-all duration-300">
+                        <h3 class="text-2xl font-bold mb-3">FamEvent</h3>
+                        <p class="opacity-90 mb-6">Skapa och planera perfekta evenemang med AI-assistans.</p>
+                        <ul class="space-y-2 text-sm opacity-80">
+                            <li class="flex items-center gap-2">✓<span>Automatisk evenemangsplanering</span></li>
+                            <li class="flex items-center gap-2">✓<span>Gästlistehantering</span></li>
+                            <li class="flex items-center gap-2">✓<span>Aktivitetsförslag</span></li>
+                        </ul>
+                    </a>
+                    <a href="Short-Description.html" class="animate-on-scroll tool-card group block rounded-2xl shadow-lg p-8 text-white bg-gradient-to-br from-blue-500 to-cyan-500 transform hover:-translate-y-2 transition-all duration-300" style="animation-delay: 100ms;">
+                        <h3 class="text-2xl font-bold mb-3">FamiShort</h3>
+                        <p class="opacity-90 mb-6">Skapa engagerande korta beskrivningar med AI.</p>
+                        <ul class="space-y-2 text-sm opacity-80">
+                            <li class="flex items-center gap-2">✓<span>SEO-optimerad text</span></li>
+                            <li class="flex items-center gap-2">✓<span>Unik tonalitet</span></li>
+                            <li class="flex items-center gap-2">✓<span>Spara tid</span></li>
+                        </ul>
+                    </a>
+                    <a href="universal.html" class="animate-on-scroll tool-card group block rounded-2xl shadow-lg p-8 text-white bg-gradient-to-br from-green-500 to-teal-500 transform hover:-translate-y-2 transition-all duration-300" style="animation-delay: 200ms;">
+                        <h3 class="text-2xl font-bold mb-3">FamUniversal</h3>
+                        <p class="opacity-90 mb-6">Universell AI-assistent för alla dina behov.</p>
+                        <ul class="space-y-2 text-sm opacity-80">
+                            <li class="flex items-center gap-2">✓<span>Långa artiklar</span></li>
+                            <li class="flex items-center gap-2">✓<span>Formatering</span></li>
+                            <li class="flex items-center gap-2">✓<span>Faktagranskning</span></li>
+                        </ul>
+                    </a>
+                    <a href="Ideagenerator.html" class="animate-on-scroll tool-card group block rounded-2xl shadow-lg p-8 text-white bg-gradient-to-br from-yellow-500 to-orange-500 transform hover:-translate-y-2 transition-all duration-300" style="animation-delay: 300ms;">
+                        <h3 class="text-2xl font-bold mb-3">FamIdea</h3>
+                        <p class="opacity-90 mb-6">Få idéer och inspiration på sekunder.</p>
+                        <ul class="space-y-2 text-sm opacity-80">
+                            <li class="flex items-center gap-2">✓<span>Brainstorming</span></li>
+                            <li class="flex items-center gap-2">✓<span>Trendanalys</span></li>
+                            <li class="flex items-center gap-2">✓<span>Kreativitet</span></li>
+                        </ul>
+                    </a>
+                     <a href="#" class="animate-on-scroll tool-card group block rounded-2xl shadow-lg p-8 text-white bg-gradient-to-br from-pink-500 to-rose-500 transform hover:-translate-y-2 transition-all duration-300" style="animation-delay: 400ms;">
+                        <h3 class="text-2xl font-bold mb-3">FamImager</h3>
+                        <p class="opacity-90 mb-6">Generera unika bilder med AI-teknik.</p>
+                        <ul class="space-y-2 text-sm opacity-80">
+                            <li class="flex items-center gap-2">✓<span>Hög upplösning</span></li>
+                            <li class="flex items-center gap-2">✓<span>Stilar</span></li>
+                            <li class="flex items-center gap-2">✓<span>Snabb generering</span></li>
+                        </ul>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Why Choose Us Section -->
+            <section class="mt-16 sm:mt-24">
+                <div class="bg-gradient-to-br from-gray-800 via-slate-900 to-black py-20 sm:py-24 px-6">
+                    <div class="animate-on-scroll text-center mb-16">
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white">Varför välja FamMap?</h2>
+                        <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Vi erbjuder den mest kompletta AI-sviten för alla dina behov.</p>
+                    </div>
+                    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="animate-on-scroll bg-gray-800/50 p-8 rounded-2xl text-center text-white border border-gray-700">
+                            <div class="mx-auto bg-indigo-500 h-16 w-16 rounded-full flex items-center justify-center shadow-lg mb-6">
+                                <svg class="h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Blixtsnabb</h3>
+                            <p class="text-gray-400">Få resultat på sekunder med vår optimerade AI-motor.</p>
+                        </div>
+                         <div class="animate-on-scroll bg-gray-800/50 p-8 rounded-2xl text-center text-white border border-gray-700" style="animation-delay: 150ms;">
+                            <div class="mx-auto bg-indigo-500 h-16 w-16 rounded-full flex items-center justify-center shadow-lg mb-6">
+                                <svg class="h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.944A12.02 12.02 0 0012 21a12.02 12.02 0 009-14.944c0-1.061-.086-2.102-.252-3.118z" /></svg>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Säkerhet först</h3>
+                            <p class="text-gray-400">Dina data är krypterade och skyddade med branschledande säkerhet.</p>
+                        </div>
+                         <div class="animate-on-scroll bg-gray-800/50 p-8 rounded-2xl text-center text-white border border-gray-700" style="animation-delay: 300ms;">
+                            <div class="mx-auto bg-indigo-500 h-16 w-16 rounded-full flex items-center justify-center shadow-lg mb-6">
+                                <svg class="h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Ständigt förbättrad</h3>
+                            <p class="text-gray-400">Vår AI lär sig och blir smartare för varje dag.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-10 border-t bg-white">
+        <div class="container mx-auto">
+            <p class="text-gray-500">&copy; 2025 FamMap. Alla rättigheter förbehållna.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
